@@ -1,21 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Player;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] private Animator playerAnimation;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             GameManager.GetInstance().LoseGame();
-
-            if (playerAnimation)
-            {
-                playerAnimation.SetBool("IsDead", true);
-            }
+            other.gameObject.GetComponent<Player>().SetDead(true);
         }
     }
 }
