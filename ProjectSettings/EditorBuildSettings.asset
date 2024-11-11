@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Boot.unity
     guid: 32b8ce9bc45f24e48830def6be550883
   - enabled: 1
+    path: Assets/Scenes/GooglePlayServices.unity
+    guid: 5c9aceaabda58424c9bce4c3d83d679e
+  - enabled: 1
     path: Assets/Scenes/SceneManager.unity
     guid: f78156559681f6b478fd6b18d85c1af6
   - enabled: 1
