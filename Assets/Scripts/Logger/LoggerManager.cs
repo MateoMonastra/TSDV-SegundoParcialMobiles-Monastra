@@ -6,7 +6,7 @@ public class LoggerManager : MonoBehaviour
     public static LoggerManager instance;
     public TextMeshProUGUI label;
 
-    private const string pluginClassName = "com.monastra.pluginlogger";
+    private const string pluginClassName = "com.monastra.pluginlogger.MonastraLogger";
 
 #if UNITY_ANDROID || UNITY_EDITOR
     private AndroidJavaClass pluginClass;
