@@ -8,7 +8,7 @@ public class LoggerManager : MonoBehaviour
 
     private const string pluginClassName = "com.monastra.pluginlogger.MonastraLogger";
 
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
     private AndroidJavaClass pluginClass;
     private AndroidJavaObject pluginInstance;
 #endif
@@ -28,7 +28,7 @@ public class LoggerManager : MonoBehaviour
     {
         label.text = "Start";
         Debug.Log("Unity - " + pluginClassName);
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         pluginClass = new AndroidJavaClass(pluginClassName);
         pluginInstance = pluginClass.CallStatic<AndroidJavaObject>("getInstance");
 
@@ -42,7 +42,7 @@ public class LoggerManager : MonoBehaviour
     public void SendTimeLog()
     {
         Debug.Log("Unity - SendTimeLog");
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         pluginInstance.Call("SendLog", Time.time.ToString());
 #endif
         UpdateLogs();
@@ -52,7 +52,7 @@ public class LoggerManager : MonoBehaviour
     public void SendLog(string text)
     {
         Debug.Log("Unity - SendLog");
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         pluginInstance.Call("SendLog", text);
 #endif
         UpdateLogs();
@@ -62,7 +62,7 @@ public class LoggerManager : MonoBehaviour
     public void ReadLogsFromFile()
     {
         Debug.Log("Unity - SendLog");
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         label.text = pluginInstance.Call<string>("ReadFromFile");
 #endif
     }
@@ -71,7 +71,7 @@ public class LoggerManager : MonoBehaviour
     public void UpdateLogs()
     {
         Debug.Log("Unity - UpdateLogs");
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         label.text = pluginInstance.Call<string>("GetAllLogs");
 #endif
     }
@@ -79,7 +79,7 @@ public class LoggerManager : MonoBehaviour
     public void SaveLogs()
     {
         Debug.Log("Unity - SaveLogs");
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         pluginInstance.Call("WriteToFile");
 #endif
     }
@@ -87,7 +87,7 @@ public class LoggerManager : MonoBehaviour
     public void DeleteLogs()
     {
         Debug.Log("Unity - DeleteLogs");
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         pluginInstance.Call("DeleteLogs");
 #endif
     }
