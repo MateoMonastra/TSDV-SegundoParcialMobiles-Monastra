@@ -1,16 +1,17 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FinishLineColision : MonoBehaviour
+namespace Game
 {
-    public Action OnPlayerColision;
-    private void OnTriggerEnter(Collider other)
+    public class FinishLineColision : MonoBehaviour
     {
-        if (other.tag == "Player")
+        public Action<GameObject> OnPlayerColision;
+        private void OnTriggerEnter(Collider other)
         {
-            OnPlayerColision.Invoke();
+            if (other.CompareTag("Player"))
+            {
+                OnPlayerColision.Invoke(other.gameObject);
+            }
         }
     }
 }

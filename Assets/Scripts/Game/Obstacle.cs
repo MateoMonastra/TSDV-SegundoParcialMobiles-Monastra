@@ -1,17 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Game.Player;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+namespace Game
 {
-    private void OnTriggerEnter(Collider other)
+    public class Obstacle : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        private void OnTriggerEnter(Collider other)
         {
-            GameManager.GetInstance().LoseGame();
-            other.gameObject.GetComponent<Player>().SetDead(true);
+            if (other.CompareTag("Player"))
+            {
+                GameManager.GetInstance().LoseGame();
+                other.gameObject.GetComponent<PlayerAgent>().SetDeadState();
+            }
         }
     }
 }

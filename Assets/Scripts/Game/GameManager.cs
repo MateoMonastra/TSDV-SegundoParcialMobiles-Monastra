@@ -1,58 +1,58 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class GameManager : MonoBehaviour
+namespace Game
 {
-    private static GameManager _instance;
-    
-    [SerializeField] private ResultPanel resultPanel;
-    IEnumerator Start()
+    public class GameManager : MonoBehaviour
     {
-        yield return null;
-
-        if (_instance == null)
+        private static GameManager _instance;
+    
+        [SerializeField] private ResultPanel resultPanel;
+        IEnumerator Start()
         {
-            _instance = this;
+            yield return null;
+
+            if (_instance == null)
+            {
+                _instance = this;
+            }
+            else if (_instance != this)
+            {
+                // Si ya existe una instancia y no es esta, se destruye el objeto duplicado
+                Destroy(gameObject);
+            }
+        
         }
-        else if (_instance != this)
+    
+        private void OnDestroy()
         {
-            // Si ya existe una instancia y no es esta, se destruye el objeto duplicado
-            Destroy(gameObject);
+            if (_instance == this)
+                _instance = null;
         }
-        
-        
-        
-    }
     
-    private void OnDestroy()
-    {
-        _instance = null;
-    }
-    
-    public static GameManager GetInstance()
-    {
-        if (_instance == null)
+        public static GameManager GetInstance()
         {
-            _instance = FindObjectOfType<GameManager>();
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<GameManager>();
+            }
+
+            return _instance;
         }
 
-        return _instance;
-    }
-
-    public void LoseGame()
-    {
-        resultPanel.gameObject.SetActive(true);
-        // _resultPanel.SetScore();
-        resultPanel.SetTitle("You Lose :(");
-    }
+        public void LoseGame()
+        {
+            resultPanel.gameObject.SetActive(true);
+            // _resultPanel.SetScore();
+            resultPanel.SetTitle("You Lose :(");
+        }
     
-    public void WinGame()
-    {
-        resultPanel.gameObject.SetActive(true);
-        // _resultPanel.SetScore();
-        resultPanel.SetTitle("You Win!!");
-    }
+        public void WinGame()
+        {
+            resultPanel.gameObject.SetActive(true);
+            // _resultPanel.SetScore();
+            resultPanel.SetTitle("You Win!!");
+        }
 
+    }
 }

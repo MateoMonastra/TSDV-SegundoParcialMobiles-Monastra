@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.Player;
 using UnityEngine;
 
-public class FinishLine : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private FinishLineColision finishLineColision;
-    
-    // Start is called before the first frame update
-    void Start()
+    public class FinishLine : MonoBehaviour
     {
-        finishLineColision.OnPlayerColision += PlayerWin;
-    }
+        [SerializeField] private FinishLineColision finishLineColision;
+        
+        void Start()
+        {
+            finishLineColision.OnPlayerColision += PlayerWin;
+        }
 
-    private void PlayerWin()
-    {
-        GameManager.GetInstance().WinGame();
+        private void PlayerWin(GameObject player)
+        {
+            player.GetComponent<PlayerAgent>().SetWinState();
+            GameManager.GetInstance().WinGame();
+        }
     }
 }
