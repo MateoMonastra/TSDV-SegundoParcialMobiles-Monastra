@@ -8,12 +8,12 @@ namespace Game.Player.FSM.States
         RunningModel _model;
 
         private Rigidbody _rb;
-        private Transform _position;
+        private GameObject _player;
 
         public Running(GameObject player, RunningModel model)
         {
             _rb = player.gameObject.GetComponent<Rigidbody>();
-            _position = player.gameObject.transform;
+            _player = player;
             _model = model;
         }
         public override void Enter()
@@ -34,8 +34,11 @@ namespace Game.Player.FSM.States
 
         public override void FixedTick(float delta)
         {
-            _rb.AddForce(_position.forward * _model.ForwardForce);
-            
+            if (_rb.velocity.magnitude < _model.MaxSpeed)
+            {
+                _rb.AddForce(_player.transform.forward * _model.ForwardForce, ForceMode.Acceleration);
+            }
+
             if (SystemInfo.supportsGyroscope)
             {
                 RotateWithGyroscope();
@@ -49,11 +52,16 @@ namespace Game.Player.FSM.States
 
         void RotateWithGyroscope()
         {
-            float gyroInput = Input.gyro.rotationRateUnbiased.x;
+            float gyroInput = Input.gyro.rotationRateUnbiased.y;
             
-            float newRotationX = Mathf.Clamp(_position.eulerAngles.x + gyroInput * _model.RotationSpeed * Time.deltaTime, -_model.MaxRotationAngle, _model.MaxRotationAngle);
+            float newRotationY = _player.transform.eulerAngles.y + gyroInput * _model.RotationSpeed * Time.deltaTime;
             
-            _position.eulerAngles = new Vector3(newRotationX, _position.eulerAngles.y, _position.eulerAngles.z);
+            if (newRotationY > 180f) newRotationY -= 360f;
+            if (newRotationY < -180f) newRotationY += 360f;
+            
+            newRotationY = Mathf.Clamp(newRotationY, -_model.MaxRotationAngle, _model.MaxRotationAngle);
+            
+            _player.transform.eulerAngles = new Vector3(_player.transform.eulerAngles.x, newRotationY, _player.transform.eulerAngles.z);
         }
     }
 }

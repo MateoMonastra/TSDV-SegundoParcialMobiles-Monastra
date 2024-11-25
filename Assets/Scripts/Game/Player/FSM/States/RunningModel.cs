@@ -8,6 +8,7 @@ namespace Game.Player.FSM.States
         [SerializeField] private float forwardForce = 10f;
         [SerializeField] private float rotationSpeed = 100f;
         [SerializeField] private float maxRotationAngle = 60f;
+        [SerializeField] private float maxSpeed = 20f;
 
         public float ForwardForce
         {
@@ -25,6 +26,13 @@ namespace Game.Player.FSM.States
         {
             get => maxRotationAngle;
             set => maxRotationAngle = value;
+
+        }
+
+        public float MaxSpeed
+        {
+            get => maxSpeed;
+            set => maxSpeed = value;
         }
     }
 }

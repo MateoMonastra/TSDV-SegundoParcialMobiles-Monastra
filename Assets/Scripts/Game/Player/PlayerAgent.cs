@@ -8,8 +8,8 @@ namespace Game.Player
 {
     public class PlayerAgent : MonoBehaviour
     {
-        public UnityEvent OnDeath;
-        public UnityEvent OnWin;
+        public UnityEvent<bool> OnDeath;
+        public UnityEvent<bool> OnWin;
         
         [SerializeField] private RunningModel runningModel;
         
@@ -25,26 +25,28 @@ namespace Game.Player
             State running = new Running(this.gameObject, runningModel);
             _states.Add(running);
 
-            State dead = new Dead();
-            State win = new Win();
+            State dead = new Dead(this.gameObject);
+            State win = new Win(this.gameObject);
 
             _runningToDead = new Transition(){ From = running, To = dead };;
             running.transitions.Add(_runningToDead);
             
             _runningToWin = new Transition(){ From = running, To = win };
             running.transitions.Add(_runningToWin);
+            
+            _fsm = new Fsm(running);
         }
 
         public void SetDeadState()
         {
             _fsm?.ApplyTransition(_runningToDead);
-            OnDeath?.Invoke();
+            OnDeath?.Invoke(true);
         }
         
         public void SetWinState()
         {
             _fsm?.ApplyTransition(_runningToWin);
-            OnWin?.Invoke();
+            OnWin?.Invoke(true);
         }
         
         private void Update()

@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 425902016}
   - component: {fileID: 425902020}
   - component: {fileID: 425902022}
-  - component: {fileID: 425902021}
+  - component: {fileID: 425902023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -895,7 +895,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425902015}
   serializedVersion: 4
-  m_Mass: 1000
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -912,23 +912,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &425902021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425902015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc416f101564655439f43b4fc645a9f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardForce: 10
-  rotationSpeed: 100
-  maxRotationAngle: 60
 --- !u!114 &425902022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,7 +928,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 425902023}
+        m_TargetAssemblyTypeName: Game.Player.PlayerAnimation, Assembly-CSharp
+        m_MethodName: SetIsDead
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnWin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 425902023}
+        m_TargetAssemblyTypeName: Game.Player.PlayerAnimation, Assembly-CSharp
+        m_MethodName: SetHasWon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  runningModel: {fileID: 11400000, guid: c4f8ac29198a45841b005e3a0932be9d, type: 2}
+--- !u!114 &425902023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425902015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9801ab543815a7340bec714eae0d5fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 517026792}
 --- !u!1 &485814586
 GameObject:
   m_ObjectHideFlags: 0
