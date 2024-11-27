@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,6 +7,8 @@ namespace CoinsSystem
     [CreateAssetMenu(fileName = "CoinsData", menuName = "CoinsData")]
     public class CoinsData : ScriptableObject
     {
+        public Action<int> OnChange;
+        
         public bool logsAreActive;
         private int _coins;
 
@@ -19,6 +22,8 @@ namespace CoinsSystem
             _coins += coinsToAdd;
             if (logsAreActive)
                 Debug.Log(_coins);
+            
+            OnChange?.Invoke(_coins);
         }
 
         public void RemoveCoins(int coinsToRemove)
@@ -26,6 +31,7 @@ namespace CoinsSystem
             _coins -= coinsToRemove;
             if (logsAreActive)
                 Debug.Log(_coins);
+            OnChange?.Invoke(_coins);
         }
 
         public void CheatCoins()
@@ -33,6 +39,7 @@ namespace CoinsSystem
             _coins = 50;
             if (logsAreActive)
                 Debug.Log(_coins);
+            OnChange?.Invoke(_coins);
         }
 
         public void ClearCoins()
@@ -40,6 +47,7 @@ namespace CoinsSystem
             _coins = 0;
             if (logsAreActive)
                 Debug.Log(_coins);
+            OnChange?.Invoke(_coins);
         }
     }
 }

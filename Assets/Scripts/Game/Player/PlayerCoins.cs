@@ -11,13 +11,13 @@ namespace Game.Player
     
         [SerializeField] private TextMeshProUGUI coinsText;
 
-
-        private void Start()
+        private void OnEnable()
         {
             SetCoinsText(coinsData.GetCoins());
+            coinsData.OnChange += SetCoinsText;
         }
 
-        public void SetCoinsText(int coinsCount)
+        private void SetCoinsText(int coinsCount)
         {
             coinsText.text = coinsCount.ToString();
         }
