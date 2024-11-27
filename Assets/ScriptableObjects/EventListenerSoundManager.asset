@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EventListenerSoundManager
   m_EditorClassIdentifier: 
   soundManager: {fileID: 0}
-  eventChannel: {fileID: 0}
+  eventChannel: {fileID: 11400000, guid: 29f88f67881ead54e9e257025b1dd241, type: 2}

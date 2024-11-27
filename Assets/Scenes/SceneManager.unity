@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initScenes:
   - GooglePlayServices
+  - SoundManager
   - Menu
   scenesData: {fileID: 11400000, guid: 4695dc6fd3eb0d9408569ac4a95b7de7, type: 2}
 --- !u!4 &217894591

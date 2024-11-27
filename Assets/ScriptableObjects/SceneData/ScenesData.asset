@@ -15,6 +15,7 @@ MonoBehaviour:
   scenes:
   - SoundManager
   - Menu
+  - SoundManager
   - GooglePlayServices
   - Level1
   - Level2
