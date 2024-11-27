@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8106231134688295064}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.1067, y: 7.95, z: 197.66}
   m_LocalScale: {x: 1.5127, y: 1.5127, z: 1.5127}
   m_ConstrainProportionsScale: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishLineColision: {fileID: 6340216894205227441}
+  soundChannel: {fileID: 11400000, guid: 29f88f67881ead54e9e257025b1dd241, type: 2}
+  celebrationSound: {fileID: 8300000, guid: f8f4732f1002cc14c92259ea246f79ae, type: 3}
 --- !u!1 &9013960899006871519
 GameObject:
   m_ObjectHideFlags: 0

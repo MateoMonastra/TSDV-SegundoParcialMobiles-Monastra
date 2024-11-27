@@ -121,3 +121,5 @@ MonoBehaviour:
   rotationSpeed: 100
   value: 1
   playerScore: {fileID: 0}
+  soundChannel: {fileID: 11400000, guid: 29f88f67881ead54e9e257025b1dd241, type: 2}
+  coinSound: {fileID: 8300000, guid: 17ec589b1a0d78e43bb487fb3ee35812, type: 3}

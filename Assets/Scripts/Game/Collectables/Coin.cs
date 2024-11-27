@@ -1,4 +1,5 @@
 using System;
+using EventSystems.EventSoundManager;
 using Game.Player;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace Game.Collectables
         [SerializeField] private float rotationSpeed = 100f;
         [SerializeField] private int value;
         [SerializeField] private PlayerScore playerScore;
+        [SerializeField] private EventChannelSoundManager soundChannel;
+        [SerializeField] private AudioClip coinSound;
 
         private void Update()
         {
@@ -21,6 +24,11 @@ namespace Game.Collectables
         public override void InCollection()
         {
             playerScore.AddScore(value);
+            gameObject.SetActive(false);
+            if (coinSound)
+            {
+                soundChannel?.OnPlaySound(coinSound);
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -28,7 +36,6 @@ namespace Game.Collectables
             if (other.gameObject.CompareTag("Player"))
             {
                 InCollection();
-                gameObject.SetActive(false);
             }
         }
     }

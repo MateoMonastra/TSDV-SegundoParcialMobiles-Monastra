@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 2233684030268630323}
   - component: {fileID: 258914049756886533}
   - component: {fileID: 4044231777029075730}
+  - component: {fileID: 5398391201804215009}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -258,6 +259,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5398391201804215009}
+        m_TargetAssemblyTypeName: Game.Player.PlayerSfx, Assembly-CSharp
+        m_MethodName: PlayDeadSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnWin:
     m_PersistentCalls:
       m_Calls:
@@ -287,6 +300,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4698867175295115916}
+--- !u!114 &5398391201804215009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4857365028644963067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a326e343011bd634bac4a12153564649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundChannel: {fileID: 11400000, guid: 29f88f67881ead54e9e257025b1dd241, type: 2}
+  deadSound: {fileID: 8300000, guid: 37b2bca94b4d05b4c820910e07cad2fe, type: 3}
 --- !u!1001 &3459176312266553015
 PrefabInstance:
   m_ObjectHideFlags: 0
