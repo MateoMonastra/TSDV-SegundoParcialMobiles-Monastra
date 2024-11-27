@@ -3445,7 +3445,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
@@ -5793,14 +5793,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4983467277333393659, guid: c79c4e751f0471f48995f55c5ae19b72, type: 3}
-      propertyPath: buttonHandler
-      value: 
-      objectReference: {fileID: 11400000, guid: 6d4df9281d9ccc74aaf855a3fccbc418, type: 2}
-    - target: {fileID: 6937580781354649984, guid: c79c4e751f0471f48995f55c5ae19b72, type: 3}
-      propertyPath: buttonHandler
-      value: 
-      objectReference: {fileID: 11400000, guid: b5d3cf3e61e2b204a91039a789d03730, type: 2}
     - target: {fileID: 7369219317018078641, guid: c79c4e751f0471f48995f55c5ae19b72, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5884,10 +5876,6 @@ PrefabInstance:
     - target: {fileID: 7520551749438618413, guid: c79c4e751f0471f48995f55c5ae19b72, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649113242389350618, guid: c79c4e751f0471f48995f55c5ae19b72, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30539,7 +30527,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
