@@ -6,7 +6,7 @@ namespace Game.Player.FSM.States
     public class Running : State
     {
         RunningModel _model;
-        
+
         private GameObject _player;
 
         public Running(GameObject player, RunningModel model)
@@ -14,6 +14,7 @@ namespace Game.Player.FSM.States
             _player = player;
             _model = model;
         }
+
         public override void Enter()
         {
             if (SystemInfo.supportsAccelerometer)
@@ -32,10 +33,8 @@ namespace Game.Player.FSM.States
 
         public override void FixedTick(float delta)
         {
-            if (_player.transform.position.z < _model.MaxSpeed)
-            {
-                _player.transform.Translate(Vector3.forward * (_model.ForwardForce * Time.deltaTime));
-            }
+            _player.transform.Translate(Vector3.forward * (_model.ForwardForce * Time.deltaTime));
+
 
             if (SystemInfo.supportsAccelerometer)
             {
@@ -45,21 +44,21 @@ namespace Game.Player.FSM.States
 
         public override void Exit()
         {
-
         }
 
         void RotateWithGyroscope()
         {
-            float accelerationZ = Input.acceleration.z;
-            float newRotationY = _player.transform.eulerAngles.y + accelerationZ * _model.RotationSpeed * Time.deltaTime;
+            float accelerationX = Input.acceleration.x;
+            float newRotationY =
+                _player.transform.eulerAngles.y + accelerationX * _model.RotationSpeed * Time.deltaTime;
 
             if (newRotationY > 180f) newRotationY -= 360f;
             if (newRotationY < -180f) newRotationY += 360f;
 
             newRotationY = Mathf.Clamp(newRotationY, -_model.MaxRotationAngle, _model.MaxRotationAngle);
 
-            _player.transform.eulerAngles = new Vector3(_player.transform.eulerAngles.x, newRotationY, _player.transform.eulerAngles.z);
-
+            _player.transform.eulerAngles = new Vector3(_player.transform.eulerAngles.x, newRotationY,
+                _player.transform.eulerAngles.z);
         }
     }
 }
