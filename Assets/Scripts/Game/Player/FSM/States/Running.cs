@@ -6,25 +6,23 @@ namespace Game.Player.FSM.States
     public class Running : State
     {
         RunningModel _model;
-
-        private Rigidbody _rb;
+        
         private GameObject _player;
 
         public Running(GameObject player, RunningModel model)
         {
-            _rb = player.gameObject.GetComponent<Rigidbody>();
             _player = player;
             _model = model;
         }
         public override void Enter()
         {
-            if (SystemInfo.supportsGyroscope)
+            if (SystemInfo.supportsAccelerometer)
             {
                 Input.gyro.enabled = true;
             }
             else
             {
-                Debug.LogWarning("No gyro support detected");
+                Debug.LogWarning("No accelerometer support detected");
             }
         }
 
@@ -34,12 +32,12 @@ namespace Game.Player.FSM.States
 
         public override void FixedTick(float delta)
         {
-            if (_rb.velocity.magnitude < _model.MaxSpeed)
+            if (_player.transform.position.z < _model.MaxSpeed)
             {
-                _rb.AddForce(_player.transform.forward * _model.ForwardForce, ForceMode.Acceleration);
+                _player.transform.Translate(Vector3.forward * (_model.ForwardForce * Time.deltaTime));
             }
 
-            if (SystemInfo.supportsGyroscope)
+            if (SystemInfo.supportsAccelerometer)
             {
                 RotateWithGyroscope();
             }
@@ -52,16 +50,16 @@ namespace Game.Player.FSM.States
 
         void RotateWithGyroscope()
         {
-            float gyroInput = Input.gyro.rotationRateUnbiased.y;
-            
-            float newRotationY = _player.transform.eulerAngles.y + gyroInput * _model.RotationSpeed * Time.deltaTime;
-            
+            float accelerationZ = Input.acceleration.z;
+            float newRotationY = _player.transform.eulerAngles.y + accelerationZ * _model.RotationSpeed * Time.deltaTime;
+
             if (newRotationY > 180f) newRotationY -= 360f;
             if (newRotationY < -180f) newRotationY += 360f;
-            
+
             newRotationY = Mathf.Clamp(newRotationY, -_model.MaxRotationAngle, _model.MaxRotationAngle);
-            
+
             _player.transform.eulerAngles = new Vector3(_player.transform.eulerAngles.x, newRotationY, _player.transform.eulerAngles.z);
+
         }
     }
 }
