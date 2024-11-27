@@ -31,6 +31,8 @@ namespace Menu.LevelSelector
             
             coinsData.RemoveCoins(levelButton.priceValue);
             levelButton.ActivateLevel();
+            
+            levelsData.AreAllLevelsUnlocked();
         }
         
         

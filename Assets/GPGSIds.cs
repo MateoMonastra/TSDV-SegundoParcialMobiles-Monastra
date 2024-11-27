@@ -24,7 +24,9 @@
 
 public static class GPGSIds
 {
-        public const string achievement_test_1 = "CgkIgLr36LMCEAIQAQ"; // <GPGSID>
+        public const string achievement_finishlevel1 = "CgkIgLr36LMCEAIQAQ"; // <GPGSID>
+        public const string achievement_gemachievement = "CgkIgLr36LMCEAIQAw"; // <GPGSID>
+        public const string achievement_unlockalllevels = "CgkIgLr36LMCEAIQAg"; // <GPGSID>
 
 }
 

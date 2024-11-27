@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using CoinsSystem;
 using Game.Player;
@@ -7,6 +8,8 @@ namespace Game
 {
     public class GameManager : MonoBehaviour
     {
+        public Action OnFinish;
+        
         private static GameManager _instance;
     
         [SerializeField] private ResultPanel resultPanel;
