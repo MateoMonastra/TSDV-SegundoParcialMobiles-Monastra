@@ -2,19 +2,22 @@ using System;
 using TMPro;
 using UnityEngine;
 
-[Serializable]
-public class ResultPanel : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI scoreText;
-
-    public void SetTitle(string title)
+    [Serializable]
+    public class ResultPanel : MonoBehaviour
     {
-         titleText.text = title;
-    }
+        [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private TextMeshProUGUI scoreText;
 
-    public void SetScore(int score)
-    {
-        scoreText.text = score.ToString();
+        public void SetTitle(string title)
+        {
+            titleText.text = title;
+        }
+
+        public void SetScore(int score)
+        {
+            scoreText.text = score.ToString();
+        }
     }
 }

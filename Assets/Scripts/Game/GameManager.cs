@@ -1,4 +1,6 @@
 using System.Collections;
+using CoinsSystem;
+using Game.Player;
 using UnityEngine;
 
 namespace Game
@@ -8,6 +10,8 @@ namespace Game
         private static GameManager _instance;
     
         [SerializeField] private ResultPanel resultPanel;
+        [SerializeField] private PlayerScore playerScore;
+        [SerializeField] private CoinsData coinsData;
         IEnumerator Start()
         {
             yield return null;
@@ -43,14 +47,15 @@ namespace Game
         public void LoseGame()
         {
             resultPanel.gameObject.SetActive(true);
-            // _resultPanel.SetScore();
+            resultPanel.SetScore(playerScore.GetScore());
             resultPanel.SetTitle("You Lose :(");
         }
     
         public void WinGame()
         {
             resultPanel.gameObject.SetActive(true);
-            // _resultPanel.SetScore();
+            resultPanel.SetScore(playerScore.GetScore());
+            coinsData.AddCoins(playerScore.GetScore());
             resultPanel.SetTitle("You Win!!");
         }
 
