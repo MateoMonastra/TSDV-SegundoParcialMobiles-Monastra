@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardForce: 15
   rotationSpeed: 100
-  maxRotationAngle: 40
+  maxRotationAngle: 60
   maxSpeed: 40
