@@ -17,7 +17,7 @@ namespace Game
 
         public void SetScore(int score)
         {
-            scoreText.text = $"Your Score Was: {score}";
+            scoreText.text = $"Your Score Was: {score}, You win {score} Coins!!";
         }
     }
 }
