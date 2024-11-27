@@ -17,7 +17,7 @@ namespace Game
 
         public void SetScore(int score)
         {
-            scoreText.text = score.ToString();
+            scoreText.text = $"Your Score Was: {score}";
         }
     }
 }

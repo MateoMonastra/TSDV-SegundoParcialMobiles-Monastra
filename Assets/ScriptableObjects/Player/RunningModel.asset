@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfec2cdbf0fdb9b47838a9ec700fdad2, type: 3}
   m_Name: RunningModel
   m_EditorClassIdentifier: 
-  forwardForce: 15
+  forwardForce: 10
   rotationSpeed: 100
   maxRotationAngle: 60
   maxSpeed: 40

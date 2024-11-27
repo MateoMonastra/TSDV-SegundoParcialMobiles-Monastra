@@ -19,5 +19,14 @@ namespace Game.Collectables
         {
             AchievementController.GetInstance().UnlockAchievement(achievementName);
         }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                InCollection();
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

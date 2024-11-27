@@ -1,3 +1,4 @@
+using System;
 using Game.Player;
 using UnityEngine;
 
@@ -20,6 +21,15 @@ namespace Game.Collectables
         public override void InCollection()
         {
             playerScore.AddScore(value);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                InCollection();
+                gameObject.SetActive(false);
+            }
         }
     }
 }
