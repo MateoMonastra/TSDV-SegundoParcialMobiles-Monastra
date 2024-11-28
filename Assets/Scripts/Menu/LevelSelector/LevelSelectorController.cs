@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CoinsSystem;
 using UnityEngine;
 
@@ -27,7 +28,12 @@ namespace Menu.LevelSelector
 
         public void TryPurchase(LevelButton levelButton)
         {
-            if (levelButton.priceValue > coinsData.GetCoins()) return;
+            if (levelButtons.Where((t, index) => t == levelButton && levelsData.levels[index] == 1).Any())
+            {
+                return;
+            }
+
+            if (levelButton.priceValue > coinsData.GetCoins() ) return;
             
             coinsData.RemoveCoins(levelButton.priceValue);
             levelButton.ActivateLevel();
