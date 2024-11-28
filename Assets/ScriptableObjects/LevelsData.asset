@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2f363e27de92b4ba64f8e364769e4c, type: 3}
   m_Name: LevelsData
   m_EditorClassIdentifier: 
-  levels: 010000
+  levels: 01000000000000000000000000000000
   achievementName: CgkIgLr36LMCEAIQAg
