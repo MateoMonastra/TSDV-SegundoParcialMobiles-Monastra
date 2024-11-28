@@ -1,16 +1,22 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace CoinsSystem
 {
-    [CreateAssetMenu(fileName = "CoinsData", menuName = "CoinsData")]
+    public interface ICoinsObserver
+    {
+        void OnCoinsChanged(int newCoinAmount);
+    }
+
+    [CreateAssetMenu(fileName = "CoinsData", menuName = "ScriptableObjects/CoinsData", order = 1)]
     public class CoinsData : ScriptableObject
     {
-        public Action<int> OnChange;
-        
         public bool logsAreActive;
+
         private int _coins;
+        private List<ICoinsObserver> _observers = new List<ICoinsObserver>();
 
         public int GetCoins()
         {
@@ -20,34 +26,61 @@ namespace CoinsSystem
         public void AddCoins(int coinsToAdd)
         {
             _coins += coinsToAdd;
-            if (logsAreActive)
-                Debug.Log(_coins);
-            
-            OnChange?.Invoke(_coins);
+            NotifyObservers();
+            LogCoins();
         }
 
         public void RemoveCoins(int coinsToRemove)
         {
             _coins -= coinsToRemove;
-            if (logsAreActive)
-                Debug.Log(_coins);
-            OnChange?.Invoke(_coins);
+            NotifyObservers();
+            LogCoins();
         }
 
         public void CheatCoins()
         {
             _coins = 50;
-            if (logsAreActive)
-                Debug.Log(_coins);
-            OnChange?.Invoke(_coins);
+            NotifyObservers();
+            LogCoins();
         }
 
         public void ClearCoins()
         {
             _coins = 0;
+            NotifyObservers();
+            LogCoins();
+        }
+
+        public void Subscribe(ICoinsObserver observer)
+        {
+            if (!_observers.Contains(observer))
+            {
+                _observers.Add(observer);
+            }
+        }
+
+        public void Unsubscribe(ICoinsObserver observer)
+        {
+            if (_observers.Contains(observer))
+            {
+                _observers.Remove(observer);
+            }
+        }
+
+        private void NotifyObservers()
+        {
+            foreach (var observer in _observers)
+            {
+                observer.OnCoinsChanged(_coins);
+            }
+        }
+
+        private void LogCoins()
+        {
             if (logsAreActive)
-                Debug.Log(_coins);
-            OnChange?.Invoke(_coins);
+            {
+                Debug.Log($"Coins: {_coins}");
+            }
         }
     }
 }

@@ -1,11 +1,10 @@
-using System;
 using CoinsSystem;
 using TMPro;
 using UnityEngine;
 
 namespace Game.Player
 {
-    public class PlayerCoins : MonoBehaviour
+    public class PlayerCoins : MonoBehaviour, ICoinsObserver
     {
         [SerializeField] private CoinsData coinsData;
     
@@ -14,12 +13,22 @@ namespace Game.Player
         private void OnEnable()
         {
             SetCoinsText(coinsData.GetCoins());
-            coinsData.OnChange += SetCoinsText;
+            coinsData.Subscribe(this);
+        }
+
+        private void OnDisable()
+        {
+            coinsData.Unsubscribe(this);
         }
 
         private void SetCoinsText(int coinsCount)
         {
             coinsText.text = coinsCount.ToString();
+        }
+
+        public void OnCoinsChanged(int newCoinAmount)
+        {
+            SetCoinsText(newCoinAmount);
         }
     }
 }
