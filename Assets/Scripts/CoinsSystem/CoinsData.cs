@@ -26,6 +26,15 @@ namespace CoinsSystem
         public void AddCoins(int coinsToAdd)
         {
             _coins += coinsToAdd;
+            SaveCoins();
+            NotifyObservers();
+            LogCoins();
+        }
+        
+        public void SetCoins(int coinsToAdd)
+        {
+            _coins = coinsToAdd;
+            SaveCoins();
             NotifyObservers();
             LogCoins();
         }
@@ -33,6 +42,7 @@ namespace CoinsSystem
         public void RemoveCoins(int coinsToRemove)
         {
             _coins -= coinsToRemove;
+            SaveCoins();
             NotifyObservers();
             LogCoins();
         }
@@ -40,6 +50,7 @@ namespace CoinsSystem
         public void CheatCoins()
         {
             _coins = 50;
+            SaveCoins();
             NotifyObservers();
             LogCoins();
         }
@@ -47,6 +58,7 @@ namespace CoinsSystem
         public void ClearCoins()
         {
             _coins = 0;
+            SaveCoins();
             NotifyObservers();
             LogCoins();
         }
@@ -81,6 +93,11 @@ namespace CoinsSystem
             {
                 Debug.Log($"Coins: {_coins}");
             }
+        }
+
+        private void SaveCoins()
+        {
+            PlayerPrefs.SetInt("Coins", _coins);
         }
     }
 }

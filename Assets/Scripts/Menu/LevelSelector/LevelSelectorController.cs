@@ -14,7 +14,7 @@ namespace Menu.LevelSelector
         {
             for (int i = 0; i < levelButtons.Count; i++)
             {
-                if (levelsData.levels[i])
+                if (levelsData.levels[i] != 0)
                 {
                     levelButtons[i].ActivateLevel();
                 }
@@ -36,12 +36,13 @@ namespace Menu.LevelSelector
             {
                 if (levelButtons[index] == levelButton)
                 {
-                    levelsData.levels[index] = true;
+                    levelsData.levels[index] = 1;
                 }
             }
 
 
             levelsData.AreAllLevelsUnlocked();
+            levelsData.SaveLevelsData();
         }
         
         
